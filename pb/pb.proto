@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package cache;
+
+option go_package = "./pb";
+
+message GetReq {
+  string key = 1;
+}
+
+message GetResp {
+  bytes val  = 1;
+  string err = 2;
+}
+
+message SetReq {
+  string key = 1;
+  bytes val  = 2;
+}
+
+message SetResp {
+  string err = 1;
+}
+
+message DelReq {
+  string key = 1;
+}
+
+message DelResp {
+  string err = 1;
+}
+
+service Cache {
+  rpc Get(GetReq) returns (GetResp);
+  rpc Set(SetReq) returns (SetResp);
+  rpc Del(DelReq) returns (DelResp);
+}
